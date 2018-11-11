@@ -19,5 +19,5 @@
     <ProjectReference Include="..\ASPCore.AllThatBTS.Common\ASPCore.AllThatBTS.Common.csproj" />
     <ProjectReference Include="..\ASPCore.AllThatBTS.Model\ASPCore.AllThatBTS.Model.csproj" />
   </ItemGroup>
-
+  
 </Project>
