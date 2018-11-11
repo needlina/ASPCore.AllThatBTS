@@ -34,9 +34,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NPoco, Version=3.9.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPoco.3.9.4\lib\net45\NPoco.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -50,13 +47,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Biz\Class1.cs" />
+    <Compile Include="Biz\UserBiz.cs" />
     <Compile Include="DacBase.cs" />
     <Compile Include="Dac\UserDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASPCore.AllThatBTS.Model\ASPCore.AllThatBTS.Model.csproj">
+      <Project>{81590DED-6655-486D-9D6F-5ED862ACB3C6}</Project>
+      <Name>ASPCore.AllThatBTS.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

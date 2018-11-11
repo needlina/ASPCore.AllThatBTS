@@ -9,11 +9,9 @@ namespace ASPCore.AllThatBTS.BizDac
 {
     public class DacBase
     {
-        private IDatabase _Db { get; set; }
+        private readonly IDatabase _db;
         public DacBase()
         {
-            IDatabase _Db;
-            _Db = new Database("connBTS");
         }
     }
 }
