@@ -1,5 +1,4 @@
-﻿using ASPCore.AllThatBTS.BizDac.Dac;
-using ASPCore.AllThatBTS.Model;
+﻿using ASPCore.AllThatBTS.Model;
 using NPoco;
 using System;
 using System.Collections.Generic;

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASPCore.AllThatBTS.BizDac.Dac
+namespace ASPCore.AllThatBTS.BizDac
 {
     public class UserDac : DacBase
     {
