@@ -12,7 +12,7 @@ namespace ASPCore.AllThatBTS.BizDac
     public class UserDac : DacBase
     {
         private static readonly IDatabase _db =
-            new NPoco.Database(@"Server=172.31.32.6;Port=3306;Database=btsdb;Uid=admin;Pwd=0(@apadm@);", DatabaseType.MySQL, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
+            new NPoco.Database(@"Server=172.30.77.240;Port=3306;Database=btsdb;Uid=admin;Pwd=0(@apadm@);", DatabaseType.MySQL, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
 
         public UserDac() : base() { }
 
