@@ -1,19 +1,17 @@
 ﻿using ASPCore.AllThatBTS.Model;
-using NPoco;
-using System;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASPCore.AllThatBTS.BizDac
 {
     public class UserBiz
     {
+        public UserDac userDac = null;
 
-        public UserDac userDac = new UserDac();
-
-
+        public UserBiz(IOptions<ConfigurationManager> settings)
+        {
+            userDac = new UserDac(settings);
+        }
 
         public List<User> GetAllUser()
         {

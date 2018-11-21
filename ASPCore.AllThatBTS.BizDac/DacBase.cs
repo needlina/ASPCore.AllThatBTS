@@ -6,21 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using ASPCore.AllThatBTS.Model;
+using Microsoft.Extensions.Configuration;
 
 namespace ASPCore.AllThatBTS.BizDac
 {
     public class DacBase
     {
-        private IOptions<ConfigurationManager> _configurationService;
-        protected readonly IDatabase _db;
-
-        public DacBase(IOptions<ConfigurationManager> _configurationService)
+        private readonly IConfiguration config;
+        protected readonly IDatabase db;
+        public DacBase(IConfiguration config)
         {
-            this._configurationService = _configurationService;
-            _db = new NPoco.Database(_configurationService.Value.ConnectionString,
+            this.config = config;
+            db = new NPoco.Database(config.GetConnectionString("Dev"),
                                      DatabaseType.MySQL,
                                      MySql.Data.MySqlClient.MySqlClientFactory.Instance);
-        }
+        }        
     }
-
 }

@@ -1,20 +1,24 @@
-﻿using System;
+﻿using ASPCore.AllThatBTS.BizDac;
+using ASPCore.AllThatBTS.Model;
+using ASPCore.AllThatBTS.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using ASPCore.AllThatBTS.Web.Models;
-using ASPCore.AllThatBTS.BizDac;
-using ASPCore.AllThatBTS.Model;
-using Microsoft.Extensions.Options;
 
 namespace ASPCore.AllThatBTS.Web.Controllers
 {
     public class HomeController : Controller
     {
+        UserBiz userBiz;
+        public HomeController(IOptions<ConfigurationManager> settings)
+        {
+            userBiz = new UserBiz(settings);
+        }
+
         public IActionResult Index()
         {
+            List<User> users = userBiz.GetAllUser();
             return View();
         }
 

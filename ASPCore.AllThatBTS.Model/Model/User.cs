@@ -22,7 +22,7 @@ namespace ASPCore.AllThatBTS.Model
         [Column("AUTH_TYPE")]
         public AuthorityType AuthType { get; set; }
         [Column("CONFIRM_YN")]
-        public bool ConfirmYN { get; set; }
+        public string ConfirmYN { get; set; }
         [Column("CREATE_DT")]
         public DateTime CreateDatetime { get; set; }
         [Column("UPDATE_DT")]

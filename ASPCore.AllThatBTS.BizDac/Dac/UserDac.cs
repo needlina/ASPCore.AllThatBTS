@@ -1,28 +1,24 @@
 ﻿using ASPCore.AllThatBTS.Model;
 using Microsoft.Extensions.Options;
 using NPoco;
-using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASPCore.AllThatBTS.BizDac
 {
-    public class UserDac : DacBase
+    public class UserDac
     {
-        private static IOptions<ConfigurationManager> _ConfigurationManager;
-        private readonly IDatabase db;
+        protected readonly IDatabase db;
 
-        public UserDac() : base(_ConfigurationManager)
+        public UserDac(IOptions<ConfigurationManager> settings)
         {
-            db = base._db;
+            this.db = new Database(settings.Value.ConnectionString,
+                                     DatabaseType.MySQL,
+                                     MySql.Data.MySqlClient.MySqlClientFactory.Instance);
         }
 
         public List<User> SelectAllUsers()
         {
-            return _db.Fetch<User>();
+            return db.Fetch<User>();
         }
 
     }

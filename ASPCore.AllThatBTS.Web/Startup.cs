@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ASPCore.AllThatBTS.Model;
+﻿using ASPCore.AllThatBTS.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NPoco;
 
 namespace ASPCore.AllThatBTS.Web
 {
@@ -37,7 +32,6 @@ namespace ASPCore.AllThatBTS.Web
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
             services.Configure<ConfigurationManager>(Configuration.GetSection("ConfigurationManager"));
             services.AddOptions();
 
