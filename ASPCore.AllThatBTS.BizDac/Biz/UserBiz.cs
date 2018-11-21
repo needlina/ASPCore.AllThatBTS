@@ -10,7 +10,10 @@ namespace ASPCore.AllThatBTS.BizDac
 {
     public class UserBiz
     {
+
         public UserDac userDac = new UserDac();
+
+
 
         public List<User> GetAllUser()
         {

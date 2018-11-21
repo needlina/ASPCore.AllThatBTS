@@ -1,4 +1,5 @@
 ﻿using ASPCore.AllThatBTS.Model;
+using Microsoft.Extensions.Options;
 using NPoco;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,13 @@ namespace ASPCore.AllThatBTS.BizDac
 {
     public class UserDac : DacBase
     {
-        private static readonly IDatabase _db =
-            new NPoco.Database(@"Server=172.30.77.240;Port=3306;Database=btsdb;Uid=admin;Pwd=0(@apadm@);", DatabaseType.MySQL, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
+        private static IOptions<ConfigurationManager> _ConfigurationManager;
+        private readonly IDatabase db;
 
-        public UserDac() : base() { }
+        public UserDac() : base(_ConfigurationManager)
+        {
+            db = base._db;
+        }
 
         public List<User> SelectAllUsers()
         {

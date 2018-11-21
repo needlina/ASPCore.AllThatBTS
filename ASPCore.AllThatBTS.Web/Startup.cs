@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASPCore.AllThatBTS.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,10 +38,8 @@ namespace ASPCore.AllThatBTS.Web
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddScoped<IDatabase>(x =>
-            {
-                return new Database(Configuration.GetConnectionString("Default"), DatabaseType.MySQL, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
-            });
+            services.Configure<ConfigurationManager>(Configuration.GetSection("ConfigurationManager"));
+            services.AddOptions();
 
             services.AddMvc();
         }

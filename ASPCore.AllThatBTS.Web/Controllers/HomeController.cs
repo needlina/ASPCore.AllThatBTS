@@ -7,15 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using ASPCore.AllThatBTS.Web.Models;
 using ASPCore.AllThatBTS.BizDac;
 using ASPCore.AllThatBTS.Model;
+using Microsoft.Extensions.Options;
 
 namespace ASPCore.AllThatBTS.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public UserBiz userBiz = new UserBiz();
         public IActionResult Index()
         {
-            List<User> userList = userBiz.GetAllUser();
             return View();
         }
 
