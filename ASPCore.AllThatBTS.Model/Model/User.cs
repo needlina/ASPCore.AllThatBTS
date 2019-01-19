@@ -12,7 +12,7 @@ namespace ASPCore.AllThatBTS.Model
     public class User
     {
         [Column("USER_NO")]
-        public int UserNo { get; set; }
+        public string UserNo { get; set; }
         [Column("NICKNAME")]
         public string NickName { get; set; }
         [Column("EMAIL")]

@@ -21,15 +21,15 @@ namespace ASPCore.AllThatBTS.Model
         [Column("DEPTH")]
         public int depth { get; set; }
         [Column("RECOMMEND_CNT")]
-        public int recommendCnt { get; set; }
+        public int recommendCount { get; set; }
         [Column("COMMENTS_CNT")]
-        public int commentsCnt { get; set; }
+        public int commentsCount { get; set; }
         [Column("CREATE_USER")]
-        public int createUser { get; set; }
+        public string createUser { get; set; }
         [Column("CREATE_DT")]
         public DateTime createDatetime { get; set; }
         [Column("UPDATE_USER")]
-        public int updateUser { get; set; }
+        public string updateUser { get; set; }
         [Column("UPDATE_DT")]
         public DateTime updateDatetime { get; set; }
 

@@ -14,9 +14,9 @@ namespace ASPCore.AllThatBTS.Model
         [Column("SEQ")]
         public string seq { get; set; }
         [Column("BOARD_ID")]
-        public BoardType boardID { get; set; }
+        public string boardId { get; set; }
         [Column("CATEGORY_ID")]
-        public CategoryType categoryType { get; set; }
+        public string categoryId { get; set; }
         [Column("SUBJECT")]
         public string subject { get; set; }
         [Column("CONTENTS")]
@@ -24,18 +24,23 @@ namespace ASPCore.AllThatBTS.Model
         [Column("READ_CNT")]
         public int readCount { get; set; }
         [Column("RECOMMEND_CNT")]
-        public int recommendCnt { get; set; }
+        public int recommendCount { get; set; }
         [Column("COMMENTS_CNT")]
         public int commentsCount { get; set; }
         [Column("IMAGE_EXIST_YN")]
-        public bool imageExistYN { get; set; }
+        public string imageExistYN { get; set; }
+        [Column("NICKNAME")]
+        public string nickname { get; set; }
+        [Column("SECRET")]
+        public string secret { get; set; }
         [Column("CREATE_USER")]
-        public int CreateUser { get; set; }
+        public string createUser { get; set; }
         [Column("CREATE_DT")]
-        public DateTime CreateDatetime { get; set; }
+        public DateTime createDatetime { get; set; }
         [Column("UPDATE_USER")]
-        public int UpdateUser { get; set; }
+        public string updateUser { get; set; }
         [Column("UPDATE_DT")]
-        public DateTime UpdateDatetime { get; set; }
+        public DateTime? updateDatetime { get; set; }
+
     }
 }

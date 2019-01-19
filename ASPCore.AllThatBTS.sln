@@ -8,9 +8,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPCore.AllThatBTS.Web", "A
 		{8B75C74D-BFC4-4E14-A3CE-37DC2D79513F} = {8B75C74D-BFC4-4E14-A3CE-37DC2D79513F}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPCore.AllThatBTS.BizDac", "ASPCore.AllThatBTS.BizDac\ASPCore.AllThatBTS.BizDac.csproj", "{0EF7F9DA-D5B3-4661-AC86-679CFA12D338}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPCore.AllThatBTS.Repository", "ASPCore.AllThatBTS.BizDac\ASPCore.AllThatBTS.Repository.csproj", "{0EF7F9DA-D5B3-4661-AC86-679CFA12D338}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPCore.AllThatBTS.Model", "ASPCore.AllThatBTS.Model\ASPCore.AllThatBTS.Model.csproj", "{8B75C74D-BFC4-4E14-A3CE-37DC2D79513F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPCore.AllThatBTS.Common", "ASPCore.AllThatBTS.Common\ASPCore.AllThatBTS.Common.csproj", "{5D0F5814-B70B-48AC-8F53-D0D80F044183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{8B75C74D-BFC4-4E14-A3CE-37DC2D79513F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B75C74D-BFC4-4E14-A3CE-37DC2D79513F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B75C74D-BFC4-4E14-A3CE-37DC2D79513F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D0F5814-B70B-48AC-8F53-D0D80F044183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D0F5814-B70B-48AC-8F53-D0D80F044183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D0F5814-B70B-48AC-8F53-D0D80F044183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D0F5814-B70B-48AC-8F53-D0D80F044183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

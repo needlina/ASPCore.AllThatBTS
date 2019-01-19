@@ -1,4 +1,170 @@
 ﻿@{
     ViewData["Title"] = "All That BTS";
+    Layout = "_Layout";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/card-deck.css">
+    <script>
+        $(document).ready(function () {
+
+            var mediaType = 'A';
+            var pageNo = 1;
+            var pageSize = 15;
+            var searchString;
+
+            getMediaByType(mediaType);
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+                    var isExpanded = $('#collapseSearch').attr("aria-expanded");
+
+                    if (isExpanded == 'true') {
+                        pageNo++;
+                        mediaType = $('#media-search-select').val();
+                        searchString = $('#media-search-text').val();
+                        getMediaBySearch(mediaType, searchString, pageNo, pageSize);
+                    }
+                    else {
+                        pageNo++;
+                        getMorePage(mediaType, pageNo, pageSize);
+                        
+                    }
+                }
+            });
+
+            $('#media-search-button').click(function () {
+                $(".card-deck").empty();
+                mediaType = $('#media-search-select').val();
+                searchString = $('#media-search-text').val();
+                pageNo = 1;
+                getMediaBySearch(mediaType, searchString, pageNo, pageSize);
+            });
+
+            $("#m_all").click(function () {
+                pageNo = 1;
+                mediaType = 'A';
+                getMediaByType(mediaType);
+            });
+
+            $("#m_officialtwitter").click(function () {
+                pageNo = 1;
+                mediaType = 'O';
+                getMediaByType(mediaType);
+            });
+            $("#m_twitter").click(function () {
+                pageNo = 1;
+                mediaType = 'T';
+                getMediaByType(mediaType);
+            });
+            $("#m_youtube").click(function () {
+                pageNo = 1;
+                mediaType = 'Y';
+                getMediaByType(mediaType);
+            });
+            $("#m_instagram").click(function () {
+                pageNo = 1;
+                mediaType = 'I';
+                getMediaByType(mediaType);
+            });
+        });
+
+        function getMorePage(mediaType, pageNo, pageSize) {
+            // data 
+            $('.spinner').show();
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetMediaByType?mediaType=" + mediaType + "&pageNo=" + pageNo + "&pageSize=" + pageSize,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+
+                    // 1. divString 만들고 ForEach
+                    var divString = "";
+
+                    for (var i in response) {
+                        divString += "<div class='card my-3'>";
+                        divString += "  <a href='" + response[i].linkUrl + "' target='_blank'><img src='" + response[i].thumbnailUrl + "' class='card-img-top'></a>";
+                        divString += "  <div class='card-body'>";
+                        divString += "    <a href='" + response[i].linkUrl + "' target='_blank'><p class='card-title'>" + response[i].subject + "</p></a>";
+                        divString += "  </div>";
+                        divString += "</div>";
+                    }
+                    // 2. 출력
+                    $(".card-deck").append(divString);
+                    $('.spinner').hide();
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+
+            pageNo++;
+        };
+
+        function getMediaByType(mediaType) {
+            $('.spinner').show();
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetMediaByType?mediaType=" + mediaType,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+                    // 1. card-dev 초기화
+                    $(".card-deck").empty();
+                    // 2. divString 만들고 ForEach
+                    var divString = "";
+
+                    for (var i in response) {
+                        divString += "<div class='card my-3'>";
+                        divString += "  <a href='" + response[i].linkUrl + "' target='_blank'><img src='" + response[i].thumbnailUrl + "' class='card-img-top'></a>";
+                        divString += "  <div class='card-body'>";
+                        divString += "    <a href='" + response[i].linkUrl + "' target='_blank'><p class='card-title'>" + response[i].subject + "</p></a>";
+                        divString += "  </div>";
+                        divString += "</div>";
+                    }
+
+                    // 3. 출력
+                    $(".card-deck").html(divString);
+                    $('.spinner').hide();
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+        function getMediaBySearch(mediaType, searchString, pageNo, pageSize) {
+            $('.spinner').show();
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetMediaBySearch?mediaType=" + mediaType + "&searchString=" + searchString + "&pageNo=" + pageNo + "&pageSize" + pageSize,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+                    // 1. divString 만들고 ForEach
+                    var divString = "";
+
+                    for (var i in response) {
+                        divString += "<div class='card my-3'>";
+                        divString += "  <a href='" + response[i].linkUrl + "' target='_blank'><img src='" + response[i].thumbnailUrl + "' class='card-img-top'></a>";
+                        divString += "  <div class='card-body'>";
+                        divString += "    <a href='" + response[i].linkUrl + "' target='_blank'><p class='card-title'>" + response[i].subject + "</p></a>";
+                        divString += "  </div>";
+                        divString += "</div>";
+                    }
+
+                    // 2. 출력
+                    $(".card-deck").append(divString);
+                    $('.spinner').hide();
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+    </script>
+</head>
+<div class="card-deck">
+</div>

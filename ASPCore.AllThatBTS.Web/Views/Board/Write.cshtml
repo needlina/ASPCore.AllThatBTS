@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewData["Title"] = "글 작성";
+    Layout = "_LayoutSidebarOnly";
+}
+
+@model BoardInfoModel
+<head>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+    <style>
+        .ck-editor__editable {
+            min-height: 400px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#write-button').click(function () {
+                // data 
+
+                var model = {};
+                model.boardId = $('#i_boardid').val();
+                model.categoryId = $('#i_category').val();
+                model.subject = $('#i_title').val();
+                model.contents = myEditor.getData();
+                model.imageExistYN = 'N';
+                model.nickname = $('#i_nickname').val();
+                model.secret = $("#i_pw").val();
+                
+                console.log(JSON.stringify(model));
+                alert(myEditor.getData());
+                $('.spinner').show();
+                $.ajax({
+                    url: '/Board/Write',
+                    data: JSON.stringify(model),
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (response) {
+                        location.href = "../?boardId=" + model.boardId;
+                    },
+                    failure: function (response) {
+                        alert(response);
+                    }
+                });
+            });
+        });
+        
+
+
+    </script>
+</head>
+<h3>@Model.boardName</h3>
+
+<form class="form-inline">
+    <div class="form-group mb-2">
+        <label for="staticEmail2" class="sr-only">닉네임</label>
+        <input type="text" class="form-control" id="i_nickname" placeholder="닉네임">
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="inputPassword2" class="sr-only">Password</label>
+        <input type="password" class="form-control" id="i_pw" placeholder="비밀번호">
+    </div>
+</form>
+<form class="form-inline">
+    <select id="i_category" class="custom-select col-sm-2">
+        @foreach (BoardCategoryModel entity in Model.categoryList)
+        {
+            <option value="@entity.categoryId">@entity.categoryName</option>
+        }
+    </select>
+    &nbsp;
+    <input type="text" class="form-control  col-sm-9" id="i_title" placeholder="제목">
+</form>
+
+<p></p>
+
+<textarea name="content" id="i_content"></textarea>
+<p></p>
+<div class="text-right">
+    <button id="write-button" type="button" class="btn btn-primary">등록</button>
+    <button type="button" class="btn btn-primary" onclick="history.back();">취소</button>
+</div>
+
+<script>
+    class DropboxUploadAdapter {
+        constructor(loader, url) {
+            // The FileLoader instance to use during the upload. It sounds scary but do not
+            // worry — the loader will be passed into the adapter later on in this guide.
+            this.loader = loader;
+
+            // The upload URL in your server back-end. This is the address the XMLHttpRequest
+            // will send the image data to.
+            this.url = url;
+        }
+
+        // Starts the upload process.
+        upload() {
+            return new Promise((resolve, reject) => {
+                this._initRequest();
+                this._initListeners(resolve, reject);
+                this._sendRequest();
+            });
+        }
+
+        // Aborts the upload process.
+        abort() {
+            if (this.xhr) {
+                this.xhr.abort();
+            }
+        }
+
+        // Initializes the XMLHttpRequest object using the URL passed to the constructor.
+        _initRequest() {
+            const xhr = this.xhr = new XMLHttpRequest();
+
+            // Note that your request may look different. It is up to you and your editor
+            // integration to choose the right communication channel. This example uses
+            // the POST request with JSON as a data structure but your configuration
+            // could be different.
+            xhr.open('POST', this.url, true);
+            xhr.responseType = 'json';
+        }
+
+        // Initializes XMLHttpRequest listeners.
+        _initListeners(resolve, reject) {
+            const xhr = this.xhr;
+            const loader = this.loader;
+            const genericErrorText = 'Couldn\'t upload file:' + ` ${loader.file.name}.`;
+
+            xhr.addEventListener('error', () => reject(genericErrorText));
+            xhr.addEventListener('abort', () => reject());
+            xhr.addEventListener('load', () => {
+                const response = xhr.response;
+
+                // This example assumes the XHR server's "response" object will come with
+                // an "error" which has its own "message" that can be passed to reject()
+                // in the upload promise.
+                //
+                // Your integration may handle upload errors in a different way so make sure
+                // it is done properly. The reject() function must be called when the upload fails.
+                if (!response || response.error) {
+                    return reject(response && response.error ? response.error.message : genericErrorText);
+                }
+
+                // If the upload is successful, resolve the upload promise with an object containing
+                // at least the "default" URL, pointing to the image on the server.
+                // This URL will be used to display the image in the content. Learn more in the
+                // UploadAdapter#upload documentation.
+                resolve({
+                    default: response.url
+                });
+            });
+
+            // Upload progress when it is supported. The FileLoader has the #uploadTotal and #uploaded
+            // properties which are used e.g. to display the upload progress bar in the editor
+            // user interface.
+            if (xhr.upload) {
+                xhr.upload.addEventListener('progress', evt => {
+                    if (evt.lengthComputable) {
+                        loader.uploadTotal = evt.total;
+                        loader.uploaded = evt.loaded;
+                    }
+                });
+            }
+        }
+
+        // Prepares the data and sends the request.
+        _sendRequest() {
+            // Prepare the form data.
+            const data = new FormData();
+            data.append('upload', this.loader.file);
+
+            // Send the request.
+            this.xhr.send(data);
+        }
+    }
+
+    function DropboxUploadAdapterPlugin(editor) {
+        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+            // Configure the URL to the upload script in your back-end here!
+            return new DropboxUploadAdapter(loader, 'https://localhost:44398/Board/ImageUpload');
+        };
+    }
+    ClassicEditor
+        .create(document.querySelector('#i_content'), {
+            extraPlugins: [DropboxUploadAdapterPlugin],
+        })
+        .then(editor => {
+            myEditor = editor;
+        })
+        .catch(error => {
+            console.error(error);
+        })
+</script>
+<input type="hidden" id="i_boardid" value="@Model.boardId" />

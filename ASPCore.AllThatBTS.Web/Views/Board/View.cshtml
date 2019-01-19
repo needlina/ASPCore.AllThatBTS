@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "View";
+    Layout = "_LayoutSidebarOnly";
+}
+
+@model BoardDataModel
+
+<head>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+    <style>
+        .ck-editor__editable {
+            min-height: 400px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            myEditor.isReadOnly = true;
+        });
+    </script>
+</head>
+
+<h2>@Model.subject</h2>
+
+<div>
+    <div style="float:left">
+        <span>닉네임 : @Model.nickname</span>
+        <span>작성일 : @Model.createDatetime</span>
+
+    </div>
+    <div style="float:right">
+        <span>조회수 : @Model.readCount</span>
+        <span>추천수 : @Model.recommendCount</span>
+    </div>
+</div>
+
+<br />
+<div>
+    <textarea name="content" id="i_content">@Model.contents</textarea>
+
+</div>
+<p></p>
+<div class="text-right">
+    <a class="btn btn-primary" asp-area="" asp-controller="Board" asp-action="Board" asp-route-boardId="@Model.boardId">목록</a>
+    <button type="button" class="btn btn-primary" onclick="history.back();">취소</button>
+</div>
+
+@*
+    
+댓글 컨트롤 영역
+
+*@
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#i_content'))
+        .then(editor => {
+            myEditor = editor;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

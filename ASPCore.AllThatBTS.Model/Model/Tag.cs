@@ -17,11 +17,11 @@ namespace ASPCore.AllThatBTS.Model
         [Column("TAG")]
         public string tag { get; set; }
         [Column("CREATE_USER")]
-        public int createUser { get; set; }
+        public string createUser { get; set; }
         [Column("CREATE_DT")]
         public DateTime createDatetime { get; set; }
         [Column("UPDATE_USER")]
-        public int updateUser { get; set; }
+        public string updateUser { get; set; }
         [Column("UPDATE_DT")]
         public DateTime updateDatetime { get; set; }
     }

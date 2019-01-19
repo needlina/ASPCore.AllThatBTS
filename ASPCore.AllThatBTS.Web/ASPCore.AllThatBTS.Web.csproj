@@ -2,12 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>ad8940fe-ab5f-44d1-8cb9-4f55be68d563</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" />
     <PackageReference Include="MySql.Data" Version="8.0.13" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="NPoco" Version="3.9.4" />
   </ItemGroup>
 
@@ -16,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ASPCore.AllThatBTS.BizDac\ASPCore.AllThatBTS.BizDac.csproj" />
+    <ProjectReference Include="..\ASPCore.AllThatBTS.BizDac\ASPCore.AllThatBTS.Repository.csproj" />
+    <ProjectReference Include="..\ASPCore.AllThatBTS.Common\ASPCore.AllThatBTS.Common.csproj" />
     <ProjectReference Include="..\ASPCore.AllThatBTS.Model\ASPCore.AllThatBTS.Model.csproj" />
   </ItemGroup>
 

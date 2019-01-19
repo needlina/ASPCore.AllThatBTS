@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+</head>
+<body>
+
+
+    <nav id="menu" class="menu slideout-menu">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    AllThatBTS
+                </a>
+            </li>
+            <li>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span style="font-size:larger;">Member</span></a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <ul>
+                            <li>
+                                <a asp-area="" asp-controller="Board" asp-action="Board" asp-route-boardId="MA"> Member A</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Board" asp-action="Board" asp-route-boardId="MB"> Member B</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#countrySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span style="font-size:larger;">Country</span></a>
+                <ul class="collapse list-unstyled" id="countrySubmenu">
+                    <li>
+                        <ul>
+                            <li>
+                                <a href="#usSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span style="font-size:larger;">U.S</span></a>
+                                <ul class="collapse list-unstyled" id="usSubmenu">
+                                    <li>
+                                        <a asp-area="" asp-controller="Board" asp-action="Board">Board</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="footer">
+            <div class="container">
+                <span class="text-muted">&copy; 2018 - AllThatBTS</span>
+            </div>
+        </div>
+    </nav>
+
+    <main id="panel" class="panel slideout-panel">
+        <nav class="navbar navbar-default" role="navigation">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a class="btn btn-light toggle-button" id="menu-toggle"><i class="fas fa-bars"></i> </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-center">
+                <li><img class="img-fluid" style="height: 50px; width: 170px; display: block;cursor:pointer" onclick="window.location='/Home/Index'" src="~/images/main/main_logo.png" /></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><button class="btn btn-light my-sm-0" onclick="window.location='/User/Login'" type="button">LOGIN</button></li>
+            </ul>
+        </nav>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+    <div class="spinner" style="display:none"></div>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/sticky-footer-navbar.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/main-site.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/css/simple-sidebar.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/css/slideout-js.css" asp-append-version="true">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/sticky-footer-navbar.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/simple-sidebar.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/css/main-site.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/css/slideout-js.css" asp-append-version="true">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        var slideout = new Slideout({
+            'panel': document.getElementById('panel'),
+            'menu': document.getElementById('menu'),
+            'padding': 256,
+            'tolerance': 70
+        });
+
+        document.querySelector('.toggle-button').addEventListener('click', function () {
+            slideout.toggle();
+        });
+    </script>
+
+
+</body>
+
+
+</html>

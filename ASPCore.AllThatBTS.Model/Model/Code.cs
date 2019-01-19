@@ -12,6 +12,8 @@ namespace ASPCore.AllThatBTS.Model
     {
         [Column("SEQ")]
         public string seq { get; set; }
+        [Column("CLASS_NAME")]
+        public string className { get; set; }
         [Column("TABLE_NAME")]
         public string tableName { get; set; }
         [Column("COL_NAME")]

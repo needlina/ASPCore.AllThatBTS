@@ -1,10 +1,14 @@
-﻿namespace ASPCore.AllThatBTS.Enum
+﻿using System.ComponentModel;
+
+namespace ASPCore.AllThatBTS.Enum
 {
     public enum BoardType
     {
-        Community,
-        FAQ,
-        Schedule
-
+        [Description("Member A")]
+        MemberA,
+        [Description("Member B")]
+        MemberB,
+        [Description("Member C")]
+        MemberC,
     }
 }

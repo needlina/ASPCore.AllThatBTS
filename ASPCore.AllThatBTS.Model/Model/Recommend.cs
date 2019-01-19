@@ -20,7 +20,7 @@ namespace ASPCore.AllThatBTS.Model
         [Column("RECOMMEND_TYPE")]
         public RecommendType recommendType { get; set; }
         [Column("CREATE_USER")]
-        public int CreateUser { get; set; }
+        public string CreateUser { get; set; }
         [Column("CREATE_DT")]
         public DateTime CreateDatetime { get; set; }
     }

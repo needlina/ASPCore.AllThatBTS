@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration.UserSecrets;
+
 
 namespace ASPCore.AllThatBTS.Web
 {
@@ -35,6 +37,16 @@ namespace ASPCore.AllThatBTS.Web
             services.Configure<ConfigurationManager>(Configuration.GetSection("ConfigurationManager"));
             services.AddOptions();
 
+            //services.AddAuthentication()
+                //.AddMicrosoftAccount(microsoftOptions => { ... })
+                //.AddGoogle(googleOptions =>
+                //{
+                //    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                //    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                //});
+                //.AddTwitter(twitterOptions => { ... })
+                //.AddFacebook(facebookOptions => { ... });
+
             services.AddMvc();
         }
 
@@ -56,6 +68,8 @@ namespace ASPCore.AllThatBTS.Web
 
             app.UseStaticFiles();
 
+            //app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -64,5 +78,5 @@ namespace ASPCore.AllThatBTS.Web
             });
         }
     }
-    
+
 }

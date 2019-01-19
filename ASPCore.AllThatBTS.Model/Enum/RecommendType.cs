@@ -3,6 +3,7 @@
     public enum RecommendType
     {
         Board,
-        Comment
+        Comment,
+        Media
     }
 }
