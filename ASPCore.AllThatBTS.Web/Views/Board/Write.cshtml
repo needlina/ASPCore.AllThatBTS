@@ -178,7 +178,7 @@
     function DropboxUploadAdapterPlugin(editor) {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
             // Configure the URL to the upload script in your back-end here!
-            return new DropboxUploadAdapter(loader, 'https://localhost:44398/Board/ImageUpload');
+            return new DropboxUploadAdapter(loader, 'https://www.allthatbts.com/Board/ImageUpload');
         };
     }
     ClassicEditor
